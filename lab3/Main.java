@@ -11,6 +11,11 @@ class Main {
 		StringBuilder text = new StringBuilder("some text input here oop dog cat fire house regular expression");
 		int wordlen = 4;
 		//[a-z&&[^aeyuoi]]  [qwrtpsdfghjklzxcvbnm]
+		if (wordlen <= 0){
+			System.out.println("<wordlen> is equal 0. Please change it and restart this program.\n Exiting...");
+			System.exit(1);
+		}
+
 		Pattern pat = Pattern.compile("\\b[a-z&&[^aeyuoi]].{" + (wordlen-1) + "}\\b", 2); //Pattern.CASE_INSESITIVE);
 		Matcher mat = pat.matcher(text);
 		int startind;
