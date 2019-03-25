@@ -19,7 +19,7 @@ class Main {
 		Pattern pat = Pattern.compile("\\b[a-z&&[^aeyuoi]].{" + (wordlen-1) + "}\\b", 2); //Pattern.CASE_INSESITIVE);
 		Matcher mat = pat.matcher(text);
 		int startind;
-		int endind
+		int endind;
 		
 		while (mat.find()) {
 			startind=mat.start();
