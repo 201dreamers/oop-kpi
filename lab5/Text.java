@@ -1,20 +1,27 @@
 //package lab5;
 
 public class Text{
-    Text(StringBuilder inputedText) {
+
+    private StringBuilder inputedText;
+    private Splitter splitter;
+    private StringBuilder[] buff;
+    private Sentence[] sentences;
+
+    public Text(StringBuilder inputedText) {
         this.inputedText = inputedText;
     }
-    
-    private StringBuilder inputedText;
-    private Splitter splitter = new Splitter(inputedText, 's');
-    private StringBuilder[] buff = splitter.getSplitedText();
-    private Sentence[] sentences = new Sentence[buff.length];
-    
-    public Sentence[] getText(){
-		for (int i = 0; i < buff.length; i++) {
-			sentences[i] = new Sentence(buff[i]);
-		}
-		return sentences;
-	}
-    
+
+    public StringBuilder[] getText(){
+
+        splitter = new Splitter(inputedText, 's');
+        //buff = splitter.getSplitedText();
+        //sentences = new Sentence[buff.length];
+/*
+		    for (int i = 0; i < buff.length; i++) {
+			       //sentences[i] = new Sentence(buff[i]);
+		    }
+            */
+        return splitter.getSplitedText();
+    }
+
 }

@@ -1,11 +1,11 @@
 //package lab5;
 
 public class Letter {
-	public Letter(StringBuilder letter){
-		this.letter = letter
-	}
 
-	private StrinBuilder letter;
+	private StringBuilder letter;
+	public Letter(StringBuilder letter){
+		this.letter = letter;
+	}
 
 	public StringBuilder getLetter(){
 		return letter;

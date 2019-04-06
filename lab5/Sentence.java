@@ -1,31 +1,45 @@
 //package lab5;
 
 public class Sentence {
+
+    private StringBuilder inputedText;
+    private Splitter splitter;
+    //private Splitter splitPunct;
+    //private StringBuilder[] buffWords;
+    //private StringBuilder[] buffPuncts;
+    //private StringBuilder[] words;
+    //private StringBuilder[] puncts;
+
     Sentence(StringBuilder inputedText) {
         this.inputedText = inputedText;
     }
     
-    private StringBuilder inputedText;
-    private Splitter splitWords = new Splitter(inputedText, 'w');
-    private Splitter splitPunct = new Splitter(inputedText, 'p');
-    private StringBuilder[] buffWords = splitWords.getSplitedText(); 
-    private StringBuilder[] buffPuncts = splitPunct.getSplitedText();
-    private Word[] words = new Word[buffWords.length];
-    private Punctuation[] puncts = new Punctuation[buffPuncts.length];
-    
-    public Word[] getSentenceWords(){
+    public StringBuilder[] getSentenceWords(){
+
+        splitter = new Splitter(inputedText, 'w');
+        //buffWords = splitWords.getSplitedText();
+        //words = new Word[buffWords.length];
+        //words = splitWords.getSplitedText();
+/*
     	for (int i = 0; i < buffWords.length; i++) {
-			words[i] = new Word(buffWords[i]);
+			words[i] = new StringBuilder(buffWords[i]);
 		}
-		return words;	
+*/
+		return splitter.getSplitedText();
     }
 
-	public Punctuation[] getSentencePuncts(){
+
+	/*public StringBuilder[] getSentencePuncts(){
+
+        splitPunct = new Splitter(inputedText, 'p');
+        //buffPuncts = splitPunct.getSplitedText();
+        //puncts = new StringBuilder[buffPuncts.length];
+
     	for (int i = 0; i < buffPuncts.length; i++) {
 			puncts[i] = new Punctuation(buffPuncts[i]);
 		}
-		return puncts;	
-    }    
+		return splitPunct.getSplitedText();	
+    }  */
     
     
 }
