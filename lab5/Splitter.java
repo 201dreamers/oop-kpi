@@ -1,5 +1,3 @@
-//package lab5;
-
 import java.util.regex.*;
 
 public class Splitter {
@@ -18,27 +16,21 @@ public class Splitter {
         sPattern = Pattern.compile("[a-zA-Z1-90\\-\\_\\ &&[^\\.\\?\\!]]+");
         break;
       case 'w':
-        sPattern = Pattern.compile("(\\b[a-zA-Z]+\\b)|([\\.\\?\\!]{1,3})");
+        sPattern = Pattern.compile("(\\b[a-zA-Z]+\\b)|([\\.\\?\\!]{0,3})");
         break;
       case 'l':
         sPattern = Pattern.compile("[a-zA-Z1-90]{1}");
         break;
     }
-  } //Splitter constructor
-
-  public Splitter (StringBuilder[] arr){
-    this.arr = arr;
-  }
-
-
-  //sPattern = Pattern.compile("[a-zA-Z1-90\\-\\_\\ &&[^\\.\\?\\!]]+");
-  //sMatch =
-
-
-  public StringBuilder [] getSplitedText(){
-
     sMatch = sPattern.matcher(text);
     while(sMatch.find()) count++;
+  } //Splitter constructor
+
+  //public Splitter (StringBuilder[] arr){
+  //  this.arr = arr;
+  //}
+
+  public StringBuilder [] getSplitedText(){
     splitedText = new StringBuilder[count];
     int i = 0;
     sMatch = sPattern.matcher(text);
@@ -52,10 +44,12 @@ public class Splitter {
     return splitedText;
   } //StringBuider [] getSplitedText() method
 
-  public StringBuilder joiner(){
-    StringBuilder buff = new StringBuilder("");
-    for (int i = 0; i < arr.length; i++){
-      buff.append(arr[i]);
+  public StringBuilder joiner(StringBuilder[] arr, int len){
+    StringBuilder buff = new StringBuilder();
+    for (int i = 0; i < (arr.length - len); i++){
+      if (i != (arr.length-len) ) {
+        buff.append(arr[i] + " ");
+      } else {buff.append(arr[i]);}
     }
     return buff;
   }

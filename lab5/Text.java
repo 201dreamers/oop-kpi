@@ -24,4 +24,7 @@ public class Text{
         return splitter.getSplitedText();
     }
 
+    public StringBuilder joiner(StringBuilder [] arr, int len){
+        return splitter.joiner(arr, len);
+    }
 }

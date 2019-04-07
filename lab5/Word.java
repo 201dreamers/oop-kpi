@@ -16,11 +16,10 @@ public class Word {
     public StringBuilder[] getWords(){
 
         splitter = new Splitter(inputedText, 'l');
-        //buff = splitter.getSplitedText();
-        //letters = new Letter[buff.length];
-		/*for (int i = 0; i < buff.length; i++) {
-			letters[i] = new Letter(buff[i]);
-		}*/
-		return splitter.getSplitedText();
-	}	
+        return splitter.getSplitedText();
+	}
+
+    public StringBuilder joiner(StringBuilder [] arr, int len){
+        return splitter.joiner(arr, len);
+    }
 }
