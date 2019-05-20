@@ -1,20 +1,21 @@
 import lab6.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class CustomSet implements Set<MusicTrack>{
 
     private static final int START_CAPACITY = 15;
     private static final int MIN_TRACK_TIME_LENGTH = 10;
-    private static final int EXTENDED_CAPACITY = (int)(START_CAPACITY*1.3);
+    private int capacity = (int)(START_CAPACITY*1.3);
+    private int currentCapacity;
+    private boolean isExtended = false;
     private MusicTrack[] elements = new MusicTrack[START_CAPACITY];
     private int size = 0;
 
     public CustomSet() {
     }
+
+    private HashSet set1;
 
     public CustomSet(MusicTrack musicTrack) {
         add(musicTrack);
@@ -26,8 +27,11 @@ public class CustomSet implements Set<MusicTrack>{
 
     public void extend(){
         MusicTrack[] buff = elements;
-        elements = new MusicTrack[EXTENDED_CAPACITY];
+        elements = new MusicTrack[capacity];
         for(int i = 0; i < buff.length; i++) elements[i] = buff[i];
+        currentCapacity = capacity;
+        capacity = (int)(currentCapacity*1.3);
+        isExtended = true;
     }
 
     @Override
@@ -72,9 +76,16 @@ public class CustomSet implements Set<MusicTrack>{
         return Arrays.copyOf(elements, size);
     }
 
+    //TODO override this method
     @Override
     public <T> T[] toArray(T[] ts) {
-        return null;
+        if (ts.length < size)
+            // Make a new array of a's runtime type, but my contents:
+            return (T[]) Arrays.copyOf(elements, size, ts.getClass());
+        System.arraycopy(elements, 0, ts, 0, size);
+        if (ts.length > size)
+            ts[size] = null;
+        return ts;
     }
 
     @Override
@@ -83,6 +94,8 @@ public class CustomSet implements Set<MusicTrack>{
             System.out.println("Length of track cannot be less than " + MIN_TRACK_TIME_LENGTH + ".");
             return false;
         }
+        if (this.contains(musicTrack)) return false;
+        if (size >= currentCapacity) this.extend();
         elements[size++] = musicTrack;
         return true;
     }
@@ -118,6 +131,11 @@ public class CustomSet implements Set<MusicTrack>{
         int i = size;
         boolean ok = false;
         for(Iterator it = collection.iterator(); it.hasNext();){
+            MusicTrack elem = (MusicTrack)it.next();
+            if (this.contains(elem)) continue;
+            if (i >= currentCapacity){
+                this.extend();
+            }
             elements[i++] = (MusicTrack)it.next();
             if (!ok) ok =true;
         }
